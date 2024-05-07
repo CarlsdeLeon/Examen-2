@@ -68,26 +68,44 @@ class ArbolBinario:
         else:
             print("Dirección inválida, intenta de nuevo.")
         return raiz
-def construir_arbol():
-    raiz = None
-    while True:
-        nodo = input("Ingrese el valor del nodo (o -1 para terminar): ")
-        if nodo == '-1':
-            break
-        #raiz = insertar_nodo(raiz)
-    return raiz
 
 
 
+    def obtener_pre_orden(self):
+        self.lista = []
+        self.pre_orden(self.raiz)
+        return self.lista
 
+    def pre_orden(self, nodo):
+        if nodo is not None:
+            self.lista.append(nodo.pregunta.pregunta)
+            self.lista.append(nodo.pregunta.respuesta)
+            self.pre_orden(nodo.izquierda)
+            self.pre_orden(nodo.derecha)
 
-def pre_orden(nodo):
-    if nodo is not None:
-        print(nodo.valor, end=' ')
-        pre_orden(nodo.izquierda)
-        pre_orden(nodo.derecha)
+    def obtener_in_orden(self):
+        self.lista = []
+        self.in_orden(self.raiz)
+        return self.lista
 
+    def in_orden(self, nodo):
+        if nodo is not None:
+            self.in_orden(nodo.izquierda)
+            self.lista.append(nodo.pregunta.pregunta)
+            self.lista.append(nodo.pregunta.respuesta)
+            self.in_orden(nodo.derecha)
 
+    def obtener_pos_orden(self):
+        self.lista = []
+        self.pos_orden(self.raiz)
+        return self.lista
+
+    def pos_orden(self, nodo):
+        if nodo is not None:
+            self.in_orden(nodo.izquierda)
+            self.lista.append(nodo.pregunta.pregunta)
+            self.lista.append(nodo.pregunta.respuesta)
+            self.in_orden(nodo.derecha)
 def post_orden(nodo):
     if nodo is not None:
         post_orden(nodo.izquierda)
